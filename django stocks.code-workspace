@@ -1,4 +1,4 @@
-{
+{	
 	"folders": [
 		{
 			"path": "."
@@ -20,4 +20,5 @@
 		"python.pythonPath": "D:\\django-projects\\djangostocks-env\\Scripts",
 		"python.sortImports.path": "D:\\django-projects\\djangostocks-env\\Lib\\site-packages"
 	}
+	
 }
