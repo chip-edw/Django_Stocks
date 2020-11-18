@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}
+    <title>Home Page</title>
+    {% endblock %}
+</head>
+<body>
+    {% block content %}
+
+    {% if ticker %}
+        {{ ticker }}
+    {% endif %}
+
+    {% if api %}
+        {% if api == "Error..." %}
+            There was a problem with your ticker symbol... <br>Please try again
+        {% else %}
+           
+            <h1> {{ api.companyName }} </h1>
+            <h3> {{ api.symbol }}</h3>            
+            <h5>The current stock price is: ${{ api.latestPrice }}</h5>
+             Previous close ${{ api.previousClose }}
+            <br> The 52 Weeek Hi is: ${{ api.week52High }}
+            <br> The 52 week Low is: ${{ api.week52Low }}
+            <br> Last opened at: ${{ api.open }} 
+            <br> High ${{ api.high }}
+            <br> Low ${{ api.low }}
+            <br> Market Cap {{ api.marketCap }}
+            <br> YTD Change ${{ api.ytdChange }}
+
+            <!-- Uncomment the below to loop through all key:Value items exposed by API
+            {% for key, value in api.items %}
+                {{ key }}: {{ value }}<br>
+            {% endfor %} -->
+            
+        {% endif %}
+
+    {% endif %}
+    
+    {% endblock %}
+</body>
+</html>

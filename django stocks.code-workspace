@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"[json]": {
+	
+			"editor.quickSuggestions": {
+				"strings": true
+			},
+			"editor.suggest.insertMode": "replace"
+		},
+		"django.snippets.exclude": [
+		
+			"cms",
+			"wagtail"
+		],
+		"python.pythonPath": "D:\\django-projects\\djangostocks-env\\Scripts",
+		"python.sortImports.path": "D:\\django-projects\\djangostocks-env\\Lib\\site-packages"
+	}
+}

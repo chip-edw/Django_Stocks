@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Add Stocks</title>
+{% endblock %}
+
+{% block content %}
+<h3>Stocks in portfolio</h3>
+<br>
+
+<form action="{% url 'add_stock' %}" class="form-inline my-2 my-lg-0" method="POST">
+    {% csrf_token %}
+
+    <input class="form-control mr-sm-2" type="search" placeholder="Add Stock to Portfolio" 
+    aria-label="Search" name="ticker">
+    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Add</button>
+  </form>
+  <br><br><br>
+
+<table class="table table-sm table-striped table-bordered table-hover">
+
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Symbol</th>
+      <th scope="col">Current Price</th>
+      <th scope="col">Previous Close</th>
+      <th scope="col">52 Week Hi</th>
+      <th scope="col">52 Week Low</th>
+      <th scope="col">Market Cap</th>
+      <th scope="col">YDT Change</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+
+{% for item in ticker %}
+
+  {{item.choices}}<name="template" id="template{{forloop.counter}}" value="template{{forloop.counter}}"/>
+    {% with cntr=forloop.counter %}
+            {% if ticker %}
+              {% for list_item in output_api %}
+                  {% if list_item.symbol|stringformat:"s" == item|stringformat:"s" %}
+                                <tr>
+                                  <th scope="row">{{cntr}}</th>
+                                  <td>{{ item }}</td>
+                                  <td>{{ list_item.latestPrice }}</td>
+                                  <td>{{ list_item.previousClose }}</td>
+                                  <td>{{ list_item.week52High }}</td>
+                                  <td>{{ list_item.week52Low }}</td>
+                                  <td>{{ list_item.marketCap }}</td>
+                                  <td>{{ list_item.ytdChange }}</td>
+                                  <td> <a href="{% url 'delete_stock' item.id %}">Delete</a></td>
+                                </tr>
+                  {% endif %}
+              {% endfor %} 
+        {% endif %}
+    {% endwith %}      
+{%  endfor %}    
+  </tbody>
+</table>
+
+{% endblock %}
